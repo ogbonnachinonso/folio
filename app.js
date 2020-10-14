@@ -12,7 +12,7 @@ const flash = require('connect-flash');
 
 const Auth = require('./routes/auth');
 const Route = require('./routes/folioRoute');
-const router = require('./routes/index');
+const Router = require('./routes/index');
 
 const Folio = require('./models/folio');
 const User = require('./models/user');
@@ -69,7 +69,7 @@ app.use((req, res, next) => {
   next();
 })
 
-app.use('/', require('./routes/index'));
+app.use(Router);
 app.use(Auth);
 app.use(Route);
 
