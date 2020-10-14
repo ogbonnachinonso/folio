@@ -4,11 +4,11 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ogbonna Chinonso Ubadire",
   "license": "MIT",
   "dependencies": {
     "async": "^3.2.0",
