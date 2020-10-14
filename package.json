@@ -7,7 +7,10 @@
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
-  "keywords": [],
+  "keywords": [
+    "NodeJs",
+    "Express"
+  ],
   "author": "Ogbonna Chinonso Ubadire",
   "license": "MIT",
   "dependencies": {
