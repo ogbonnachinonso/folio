@@ -1,0 +1,73 @@
+<%- include('../partials/header') -%>
+<div class="intro intro-single route bg-image" style="background-image: url(assets/img/torii.jpg)">
+  <div class="overlay-mf"></div>
+  <div class="intro-content display-table">
+    <div class="table-cell">
+      <div class="container">
+      
+        <h2 class="intro-title mb-4"><span style="color: #ff9f43">Po</span><span style="color: #0abde3">rt</span><span style="color: #f5f5f5">fo</span><span style="color: #ff9f43">li<span><span style="color: #ff9f43">o<span></h2>
+        <ol class="breadcrumb d-flex justify-content-center">
+          <li class="breadcrumb-item">
+            <a href="/">Home</a>
+          </li>
+          <li class="breadcrumb-item active">Portfolio</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main id="bg">
+
+  
+   <section id="work" class="portfolio-mf sect-pt route">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="title-box1 text-center">
+            <h3 class="title-a1">
+              Portfolio Samples
+            </h3>
+            <p class="subtitle-a">
+              Below are project samples we have so far delivered to our clients.
+            </p>
+            <div class="line-mf"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <% folios.forEach((folio)=>{%>
+        <div class="col-md-4">
+          <div class="work-box">
+            <a href="<%= folio.img %>" data-gall="portfolioGallery" class="venobox">
+              <div class="work-img">
+                <img src="<%= folio.img %>" alt="" class="img-fluid">
+              </div>
+            </a>
+            <div class="work-content">
+              <div class="row">
+                <div class="col-sm-8">
+                  <h2 class="w-title">Click Plus sign to see details</h2>
+                  <div class="w-more">
+                    <span class="w-ctegory"><%= folio.category %></span> / <span class="w-date"><%= folio.createdAt.toLocaleDateString() %></span>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="w-like">
+                    <a href="/folio/<%= folio.id %>"> <span class="ion-ios-plus-outline"></span></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%})%>
+
+
+
+      </div>
+    </div>
+  </section>
+
+</main>
+<%- include('../partials/footer') -%>

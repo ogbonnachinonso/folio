@@ -1,0 +1,35 @@
+<%- include('../partials/header')-%>
+<div class="intro intro-single route bg-image" style="background-image: url(assets/img/torii.jpg)">
+  <div class="overlay-mf"></div>
+  <div class="intro-content display-table">
+    <div class="table-cell">
+      <div class="container">
+        <h2 class="intro-title mb-4"><span style="color: #ff9f43">Log</span><span style="color: #0abde3">in</span> <span style="color: #f5f5f5">Pa</span><span style="color: #ff434c">ge<span><span style="color: #ff9f43"><span></h2>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<main class="login-page" id="paddin">
+
+  <div class="container mt-2 mb  w-75">
+    <div class="col-sm-12">
+      <div class="card background">
+        <div class="card-body mt-3">
+          <!-- <h2 class="mb-4 text-center text ">Login</h2> -->
+          <%- include('../partials/message')-%>
+          <form action="/login" method="POST" class="background">
+            <input required type="text" name="username" class="form-control input mt-2 " placeholder="Enter Username">
+            <br><br>
+            <input required type="password" name="password" class="form-control input mt-2" placeholder="Enter Password">
+            <button class="btn but btn-block mt-4 login" type="submit">Login</button><br>
+            <div class="float-right text-danger py-2"><a href="/forgot">Forgot Password</a></div><br>
+            <a class="btn but btn-block mt-4 login" href="/signup">Sign Up</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include('../partials/footer')-%>

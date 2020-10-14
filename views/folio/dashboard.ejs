@@ -1,0 +1,89 @@
+
+<%- include('../partials/dash')-%>
+
+<section id="dashboard">
+<h1 class="text-center">Admin Dashboard</h1>
+
+
+<!--Card-->
+<div class="card card-cascade narrower">
+
+  <!--Card header-->
+  <div
+    class="view view-cascade py-3 gradient-card-header infoo color-dark mx-4 d-flex justify-content-between align-items-center">
+
+    <div>
+      <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
+        <i class="fa fa-th-large mt-0"></i>
+      </button>
+      <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
+        <i class="fa fa-columns mt-0"></i>
+      </button>
+    </div>
+
+    <a href="" class="white-text mx-3">PORTFOLIO </a>
+
+    <div>
+      <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2"><a href="/add"
+          class="fas fa-pencil-alt mt-0"></a>
+        <i></i> </button>
+     
+    </div>
+
+  </div>
+  <!--/Card header-->
+
+  <!--Card content-->
+  <div class="card-body">
+
+    <div class="table-responsive">
+
+      <table class="table text-nowrap ">
+        <thead class="infoo">
+          <tr>
+            <th>Title</th>
+            <!-- <th>Description</th> -->
+            <th>Client</th>
+            <th>CreatedAt</th>
+            <!-- <th>Image</th> -->
+            <th><button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2"><a href="/add"
+                  class="fas fa-pencil-alt mt-0"></a>
+                <i></i> </button></th>
+          </tr>
+        </thead>
+        <tbody class="full">
+          <% folios.forEach((folio)=>{%>
+          <tr>
+            <td><%= folio.category %></td>
+            <td><%= folio.client %></td>
+            <td><%= folio.createdAt.toLocaleDateString() %></td>
+            <!-- <td><%= folio.img %></td> -->
+            
+            <td>
+              <a href="/edit/<%= folio.id %>" class="btn btn-outline-white  btn-float mt-2"><i class="fa fa-edit "></i></a>
+
+              <form action="/delete/<%= folio.id %>" method="POST" id="delete-form">
+
+                <button type="submit" class="btn red "><i class="fa fa-trash"></i></button>
+              </form>
+            </td>
+          </tr>
+
+          <%})%>
+        </tbody>
+      </table>
+
+    </div>
+    <hr class="my-0">
+
+  </div>
+  <!--/.Card content-->
+
+</div>
+<!--/.Card-->
+</section>
+
+
+
+
+<%- include('../partials/footer')-%>

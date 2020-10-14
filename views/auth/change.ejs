@@ -1,0 +1,18 @@
+<%- include('../partials/header')-%>
+<main id="forgot-padding">
+  <h2 class="mb-3 mt-5 text-center text ">Change Password</h2>
+<div class="container mt-2 mb-5 w-50 ">
+  <%- include('../partials/message')-%>
+  <form action="/reset/<%=token %> " method="POST">
+    <div class="form-group px-0">
+      <input required type="password" name="password" class="form-control input " placeholder="Password">
+    </div>
+    <div class="form-group px-0">
+      <input required type="password" name="confirmpassword" class="form-control input " placeholder="Confirmpassword">
+    </div>
+    <button class="btn login btn-block mt-4" type="submit">ChangePassword</button>
+  </form>
+</div>
+
+</main>
+<%- include('../partials/footer')-%>
