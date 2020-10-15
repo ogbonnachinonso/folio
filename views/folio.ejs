@@ -5,12 +5,12 @@
     <div class="table-cell">
       <div class="container">
         <!-- <h2 class="intro-title mb-4">Portfolio Details</h2> -->
-        <h2 class="intro-title mb-4"><span style="color: #ff9f43">Port</span><span style="color: #0abde3">folio</span> <span style="color: #f5f5f5">Det</span><span style="color: #ff9f43">ai<span><span style="color: #ff9f43">ls<span></h2>
+        <h2 class="intro-title mb-4"><span style="color: #ff9f43">Con</span><span style="color: #f5f5f5">ta</span><span style="color: #f5f5f5">ct</span> <span style="color: #ff9f43">Pa<span><span style="color: #ff9f43">ge<span></h2>
         <ol class="breadcrumb d-flex justify-content-center">
           <li class="breadcrumb-item">
             <a href="/">Home</a>
           </li>
-          <li class="breadcrumb-item active">Portfolio Details</li>
+          <li class="breadcrumb-item active">Contact Us</li>
         </ol>
       </div>
     </div>
@@ -18,39 +18,100 @@
 </div>
 
 <main id="bg">
-
-  <!-- ======= Portfolio Details Section ======= -->
-  <section class="portfolio-details">
-    <div class="container">
-
-      <div class="portfolio-details-container">
-
-        <div class="owl-carousel portfolio-details-carousel">
-          <img src="<%= folio.img %>" class="img-fluid" alt="">
-          <img src="assets/img/torii.jpg" class="img-fluid" alt="">
-          <img src="assets/img/portfolio-details-3.jpg" class="img-fluid" alt="">
+  <!-- ======= Contact Section ======= -->
+  <section class="paralax-mf footer-paralax bg-image sect-mt4 route"
+    style="background-image: url(assets/img/torii.jpg)">
+    <div class="overlay-mf"></div>
+    <div class="container" >
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="contact-mf">
+            <div id="contact" class="box-shadow-full">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="title-box-2">
+                    <h5 class="title-left">
+                      Message Us
+                    </h5>
+                  </div>
+                  <%- include('partials/message')-%>
+                  <div>
+                    <form action="/send" method="POST" role="for" class="email-form">
+                      <div class="row">
+                        <div class="col-md-12 mb-3">
+                          <div class="form-group">
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name"
+                              data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                            <div class="validate"></div>
+                          </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                          <div class="form-group">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email"
+                              data-rule="email" data-msg="Please enter a valid email" />
+                            <div class="validate"></div>
+                          </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                          <div class="form-group">
+                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject"
+                              data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                            <div class="validate"></div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <textarea class="form-control" name="message" rows="5" data-rule="required"
+                              data-msg="Please write something for us" placeholder="Message"></textarea>
+                            <div class="validate"></div>
+                          </div>
+                        </div>
+                        <div class="col-md-12 text-center mb-3">
+                          <div class="loading">Loading</div>
+                          <div class="error-message"></div>
+                          <div class="sent-message">Your message has been sent. Thank you!</div>
+                        </div>
+                        <div class="col-md-12 text-center">
+                          <button type="submit" class="button button-a button-big button-rouded">Send Message</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="title-box-2 pt-4 pt-md-0">
+                    <h5 class="title-left">
+                      Get in Touch
+                    </h5>
+                  </div>
+                  <div class="more-info">
+                    <p class="lead">
+                      For further enquires or information, reach out to us through our phone number, via our email
+                      address, via our social media handles or visit us @ the location below.
+                    </p>
+                    <ul class="list-ico">
+                      <li class="title-ss"><span class="ion-ios-location "></span > 7 Factory Road Aba, Abia State</li>
+                      <li class="title-ss"><span class="ion-ios-telephone"></span> (+234) 8107583440</li>
+                      <li class="title-ss"><span class="ion-email"></span>desmondubadire@gmail.com</li>
+                    </ul>
+                  </div>
+                  <div class="socials">
+                    <ul>
+                      <li><a href=""><span class="ico-circle"><i class="ion-social-facebook"></i></span></a></li>
+                      <li><a href=""><span class="ico-circle"><i class="fa fa-instagram"></i></span></a></li>
+                      <li><a href=""><span class="ico-circle"><i class="ion-social-twitter"></i></span></a></li>
+                      <li><a href=""><span class="ico-circle"><i class="fa fa-linkedin"></i></span></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div class="portfolio-info" id="bg">
-          <h3>Project information</h3>
-          <ul>
-            <li><strong>Category</strong>: <%= folio.category %></li>
-            <li><strong>Client</strong>: <%= folio.client %></li>
-            <li><strong>Project date</strong>: <%= folio.createdAt.toLocaleDateString() %></li>
-            <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
-          </ul>
-        </div>
-
-      </div>
-
-      <div class="portfolio-description">
-        <h2>This is an example of portfolio detail</h2>
-        <p>
-          <%= folio.description %>
-        </p>
       </div>
     </div>
-  </section> 
+  </section><!-- End Contact Section -->
+
 
 </main><!-- End #main -->
 <%- include('partials/footer') -%>

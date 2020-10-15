@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const nodemailer = require('nodemailer');
+const Folio = require('../models/folio');
 
 // landing page
 //get route
@@ -13,6 +15,21 @@ router.get('/blog',  (req, res) => {
 });
 
 
+router.get('/projects',  (req, res) => {
+  Folio.find({})
+    .then(folios => {
+      res.render('folio/portfolio', { folios: folios });
+    })
+    .catch(err => {
+      req.flash('error_msg', 'ERROR: +err');
+      res.redirect('/index');
+    })
+});
+
+router.get('/contact',  (req, res) => {
+  res.render('folio');
+});
+
 router.post('/send', (req, res) => {
   const output = `
       <p>You have a new contact request</p>
@@ -25,8 +42,6 @@ router.post('/send', (req, res) => {
       <h3>Message</h3>
       <p>${req.body.message}</p>
     `;
-
-
 
     let transport = nodemailer.createTransport({
       host: "smtp.mailtrap.io",
@@ -56,10 +71,11 @@ router.post('/send', (req, res) => {
     console.log('Message sent: %s', info.messageId);
     console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
 
-    // res.render('message', { msg: 'Your Email Has Been Sent Successfully' });
+    res.render('message', { msg: 'Your Email Has Been Sent Successfully' });
+   
   });
-  req.flash('success_msg', 'Your Email Has Been Sent Successfully');
-  res.redirect('/')
+  // req.flash('success_msg', 'Your Email Has Been Sent Successfully');
+  // res.redirect('/contact')
 });
 
 module.exports = router;
