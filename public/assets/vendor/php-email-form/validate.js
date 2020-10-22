@@ -1,16 +1,15 @@
 
-!(function($) {
+ jQuery(document).ready(function($) {
   "use strict";
 
-  $('form.email-form').submit(function(e) {
-    e.preventDefault();
-    
+  //Contact
+  $('form.emailForm').submit(function() {
     var f = $(this).find('.form-group'),
       ferror = false,
       emailExp = /^[^\s()<>@,;:\/]+@\w[\w\.-]+\.[a-z]{2,}$/i;
 
     f.children('input').each(function() { // run all inputs
-     
+
       var i = $(this); // current input
       var rule = i.attr('data-rule');
 
@@ -56,7 +55,7 @@
             }
             break;
         }
-        i.next('.validate').html((ierror ? (i.attr('data-msg') !== undefined ? i.attr('data-msg') : 'wrong Input') : '')).show('blind');
+        i.next('.validation').html((ierror ? (i.attr('data-msg') !== undefined ? i.attr('data-msg') : 'wrong Input') : '')).show('blind');
       }
     });
     f.children('textarea').each(function() { // run all inputs
@@ -87,7 +86,7 @@
             }
             break;
         }
-        i.next('.validate').html((ierror ? (i.attr('data-msg') != undefined ? i.attr('data-msg') : 'wrong Input') : '')).show('blind');
+        i.next('.validation').html((ierror ? (i.attr('data-msg') != undefined ? i.attr('data-msg') : 'wrong Input') : '')).show('blind');
       }
     });
     if (ferror) return false;
@@ -105,8 +104,18 @@
     this_form.find('.error-message').slideUp();
     this_form.find('.loading').slideDown();
 
-    return true;
+    if ( $(this).data('recaptcha-site-key') ) {
+      var recaptcha_site_key = $(this).data('recaptcha-site-key');
+      grecaptcha.ready(function() {
+        grecaptcha.execute(recaptcha_site_key, {action: 'email_form_submit'}).then(function(token) {
+          email_form_submit(this_form,action,this_form.serialize() + '&recaptcha-response=' + token);
+        });
+      });
+    } else {
+      email_form_submit(this_form,action,this_form.serialize());
+    }
+  
+    return false;
   });
 
-  
-})(jQuery);
+});

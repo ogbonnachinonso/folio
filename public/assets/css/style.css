@@ -80,6 +80,19 @@ a:hover {
   }
 }
 
+.overlay-m {
+  background-color: #def9fce5;
+}
+
+.overlay-m {
+  position: absolute;
+  top: 0;
+  left: 0px;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  opacity: .7;
+}
 .overlay-mf {
   background-color: #0097A7;
 }
@@ -1061,6 +1074,7 @@ a:hover {
   margin-top: 4rem;
 }
 
+
 @media (min-width: 767px) {
   .contact-mf .box-pl2 {
     margin-top: 3rem;
@@ -1068,7 +1082,7 @@ a:hover {
   }
 }
 
-.email-form .validate {
+.emailForm .validation {
   display: none;
   color: red;
   margin: 0 0 15px 0;
@@ -1076,7 +1090,7 @@ a:hover {
   font-size: 13px;
 }
 
-.email-form .error-message {
+.emailForm .error-message {
   display: none;
   color: #fff;
   background: #ed3c0d;
@@ -1085,7 +1099,7 @@ a:hover {
   font-weight: 600;
 }
 
-.email-form .sent-message {
+.emailForm .sent-message {
   display: none;
   color: #fff;
   background: #18d26e;
@@ -1094,14 +1108,14 @@ a:hover {
   font-weight: 600;
 }
 
-.email-form .loading {
+ .loading {
   display: none;
   background: #fff;
   text-align: center;
   padding: 15px;
 }
 
-.email-form .loading:before {
+ .loading:before {
   content: "";
   display: inline-block;
   border-radius: 50%;
@@ -1120,20 +1134,20 @@ a:hover {
   font-size: 14px;
 }
 
-.email-form input::focus, .email-form textarea::focus {
+.emailForm input::focus, .email-form textarea::focus {
   background-color: #0097A7;
 }
 
-.email-form input {
+.emailForm input {
   padding: 20px 15px;
 }
 
-.email-form textarea {
+.emailForm textarea {
   padding: 12px 15px;
   margin-bottom: 0;
 }
 
-.email-form button[type="submit"] {
+.emailForm button[type="submit"] {
   background: #0097A7;
   border: 0;
   padding: 10px 24px;
@@ -1141,7 +1155,7 @@ a:hover {
   transition: 0.4s;
 }
 
-.email-form button[type="submit"]:hover {
+.emailForm button[type="submit"]:hover {
   background: #0097A7;
 }
 

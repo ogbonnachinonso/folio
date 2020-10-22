@@ -71,7 +71,8 @@ router.post('/send', (req, res) => {
     console.log('Message sent: %s', info.messageId);
     console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
 
-    res.send(  'Your Email Has Been Sent Successfully' );
+    // res.send(  'Your Email Has Been Sent Successfully' );
+    req.flash('success_msg', 'Your Email Has Been Sent Successfully');
     res.redirect('/contact')
    
   });

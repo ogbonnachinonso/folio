@@ -18,6 +18,7 @@
 </div>
 
 <main id="bg">
+
   <!-- ======= Contact Section ======= -->
   <section class="paralax-mf footer-paralax bg-image sect-mt4 route"
     style="background-image: url(assets/img/torii.jpg)">
@@ -27,82 +28,96 @@
         <div class="col-sm-12">
           <div class="contact-mf">
             <div id="contact" class="box-shadow-full">
+              <h1 class="section-title text-center pt-1">Our Contact</h1>
+              <hr>
               <div class="row">
-                <div class="col-md-6">
-                  <div class="title-box-2">
-                    <h5 class="title-left">
-                      Message Us
-                    </h5>
+                
+                  <div class="col-lg-4 col-md-4">
+                    <div class="contact-abou" >
+                      <h3>
+                        <strong>
+                          <small class="px-4">OgbFolio</small>
+                        </strong>
+                      </h3>
+                      <p class="text-center px-3 ">For further information, enquiries and or assistance, contact us through the
+                        following links below. You can as well reach us via email and phone through the email and number below
+                      </p>
+                      <div class="socials ml-5 ">
+                        <ul class="mb-3">
+                          <li><a href=""><span class="ico-circle mb-3"><i class="ion-social-facebook"></i></span></a></li>
+                          <li><a href="https://bit.ly/2Z6Xyxw"><span class="ico-circle mb-3"><i class="fa fa-instagram"></i></span></a></li>
+                          <li><a href="https://twitter.com/@ogbonnaubadire"><span class="ico-circle mb-3"><i class="ion-social-twitter"></i></span></a></li>
+                          <li><a href="https://bit.ly/2Z6Xyxw"><span class="ico-circle mb-3"><i class="fa fa-linkedin"></i></span></a></li>
+                        </ul>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <form action="/send" method="POST" role="for" class="email-form">
-                      <div class="row">
-                        <div class="col-md-12 mb-3">
-                          <div class="form-group">
+          
+                  <div class="col-lg-3 col-md-4">
+                    <div class="inf">
+                      <div class="text-center dar px-4">
+                        <i class="ion-ios-location-outline"></i>
+                        <p> 7 factory Road Aba,
+                          <br>Abia state, Nigeria</p>
+                      </div>
+          
+                      <div class="text-center dar">
+                        <i class="ion-ios-email-outline"></i>
+                        <p><i>desmondubadire@gmail.com</i></p>
+                      </div>
+          
+                      <div class="text-center dar px-4">
+                        <i class="ion-ios-telephone-outline"></i>
+                        <p>08107583440</p>
+                      </div>
+          
+                    </div>
+                  </div>
+          
+                  <div class="col-lg-5 col-md-8">
+                    <div class="form">
+                      <div id="sendmessage" class="text-center">Message Us</div>
+                      <br>
+                      <%- include('partials/message') -%>
+                      <div id="errormessage"></div>
+                      <form action="/send" method="POST" role="form" class="emailForm">
+                        <div class="form-row">
+                          <div class="form-group col-lg-6">
                             <input type="text" name="name" class="form-control" id="name" placeholder="Your Name"
                               data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                            <div class="validate"></div>
+                              <div class="validation"></div>
                           </div>
-                        </div>
-                        <div class="col-md-12 mb-3">
-                          <div class="form-group">
+                          <div class="form-group col-lg-6">
                             <input type="email" class="form-control" name="email" id="email" placeholder="Your Email"
                               data-rule="email" data-msg="Please enter a valid email" />
-                            <div class="validate"></div>
+                              <div class="validation"></div>
                           </div>
-                        </div>
-                        <div class="col-md-12 mb-3">
-                          <div class="form-group">
+                          <div class="form-group col-lg-6">
+                            <input type="number" class="form-control" name="phone" id="phone" placeholder="Your Phone Number"
+                              data-rule="minlen:11" data-msg="Please enter a valid number" />
+                              <div class="validation"></div>
+                          </div>
+                          <div class="form-group col-lg-6">
                             <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject"
                               data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-                            <div class="validate"></div>
+                              <div class="validation"></div>
                           </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <textarea class="form-control" name="message" rows="5" data-rule="required"
+                          <div class="form-group col-lg-12">
+                            <textarea  class="form-control" name="message" rows="5" data-rule="required"
                               data-msg="Please write something for us" placeholder="Message"></textarea>
-                            <div class="validate"></div>
+                              <div class="validation"></div>
                           </div>
-                        </div>
-                        <div class="col-md-12 text-center mb-3">
-                          <div class="loading">Loading</div>
-                          <div class="error-message"></div>
-                          <div class="sent-message">Your message has been sent. Thank you!</div>
-                        </div>
-                        <div class="col-md-12 text-center">
-                          <button type="submit" class="button button-a button-big button-rouded">Send Message</button>
-                        </div>
-                      </div>
-                    </form>
+                          <div class="col-md-12 text-center mb-3">
+                            <div class="loading">Loading</div>
+                            <div class="error-message"></div>
+                            <div class="sent-message">Your message has been sent. Thank you!</div>
+                          </div>
+                          <div class="text-center">
+                            <button type="submit" class="button button-a button-big button-rouded" title="Send Message">Send Message</button>
+                          </div>
+                      </form>
+                    </div>
                   </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="title-box-2 pt-4 pt-md-0">
-                    <h5 class="title-left">
-                      Get in Touch
-                    </h5>
-                  </div>
-                  <div class="more-info">
-                    <p class="lead">
-                      For further enquires or information, reach out to us through our phone number, via our email
-                      address, via our social media handles or visit us @ the location below.
-                    </p>
-                    <ul class="list-ico">
-                      <li class="title-ss"><span class="ion-ios-location "></span > 7 Factory Road Aba, Abia State</li>
-                      <li class="title-ss"><span class="ion-ios-telephone"></span> (+234) 8107583440</li>
-                      <li class="title-ss"><span class="ion-email"></span>desmondubadire@gmail.com</li>
-                    </ul>
-                  </div>
-                  <div class="socials">
-                    <ul>
-                      <li><a href=""><span class="ico-circle"><i class="ion-social-facebook"></i></span></a></li>
-                      <li><a href=""><span class="ico-circle"><i class="fa fa-instagram"></i></span></a></li>
-                      <li><a href=""><span class="ico-circle"><i class="ion-social-twitter"></i></span></a></li>
-                      <li><a href=""><span class="ico-circle"><i class="fa fa-linkedin"></i></span></a></li>
-                    </ul>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -111,6 +126,7 @@
     </div>
   </section><!-- End Contact Section -->
 
-
 </main><!-- End #main -->
+
+
 <%- include('partials/footer') -%>
