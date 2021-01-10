@@ -21,6 +21,10 @@ const User = require('./models/user');
 
 const app = express();
 require('dotenv').config();
+const cloudinary = require('cloudinary');
+  require('./handler/cloudinary');
+const upload = require('./handler/multer'); 
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', '.ejs');

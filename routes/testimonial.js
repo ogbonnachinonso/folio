@@ -5,6 +5,13 @@ const Review = require('../models/review');
 const User = require('../models/user');
 
 
+const path = require('path');
+
+require('dotenv').config();
+const cloudinary = require('cloudinary');
+require('../handler/cloudinary');
+const upload = require('../handler/multer');
+
 
 // Get routes home
 router.get("/testimonial", (req, res) => {
@@ -21,7 +28,7 @@ router.get("/testimonial", (req, res) => {
 router.get('/testimonial/:id', (req, res) => {
   Review.findOne({ _id: req.params.id })
     .then((review) => {
-      res.render('review/reviewDetails',{ review: review });
+      res.render('review/reviewDetails', { review: review });
     })
     .catch(err => {
       req.flash('error_msg', 'ERROR: +err');
@@ -30,34 +37,33 @@ router.get('/testimonial/:id', (req, res) => {
     });
 });
 // Get routes add folio
-router.get('/create',  (req, res) => {
+router.get('/create', (req, res) => {
   res.render('review/add');
 });
 
-//post request starts here
-router.post('/create',  (req, res) => {
-  let newReview = {
-    name: req.body.name,
-    work: req.body.work,
-    story: req.body.story,
-    imgUrl: req.body.imgUrl
-  };
-
-  Review.create(newReview)
-    .then((review) => {
-      req.flash('success_msg', 'Testimonial Added Successfully')
-      res.redirect('/reviews')
-    })
-    .catch(err => {
-      req.flash('error_msg', 'ERROR: +err');
-      console.error(err);
-      res.redirect('/create');
-    });
+// Post routes Add Review
+router.post('/create', upload.single('image'),  async (req, res, next) => {
+  try {
+    const result = await cloudinary.v2.uploader.upload(req.file.path)
+    const review = new Review()
+    review.name = req.body.name,
+      review.work = req.body.work,
+      review.story = req.body.story,
+      review.imgUrl = result.secure_url
+    await review.save()
+    req.flash('success_msg', 'Testimonial Added Successfully')
+    res.redirect('/reviews')
+  }
+  catch (err) {
+    req.flash('error_msg', 'ERROR: +err');
+    console.error(err);
+    res.redirect('/create');
+  }
 });
 
 // Get route dashboard
 const verify = require("../middleware/role");
- router.get("/reviews",  (req, res) => {
+router.get("/reviews", (req, res) => {
   Review.find({})
     .then(reviews => {
       res.render('review/reviews', { reviews: reviews });
@@ -69,56 +75,59 @@ const verify = require("../middleware/role");
 });
 
 // Get routes edit/:id
-router.get('/edit/:id', ensureAuth, (req, res) => {
-
-  let searchQuery = { _id: req.params.id };
-
-  Review.findOne(searchQuery)
-    .then(review => {
-      req.flash('success_msg', 'Testimonial Details edited Successfully');
-      res.render('review/edit', { review: review });
-    })
-    .catch(err => {
-      req.flash('error_msg', 'ERROR: +err');
-      res.redirect('/reviews');
-    });
+router.get("/edit/:id", upload.single('image'), ensureAuth, async (req, res) => {
+  try {
+    let review = await Review.findById(req.params.id);
+    res.render('review/edit', { review });
+  }
+  catch (err) {
+    req.flash('error_msg', 'ERROR: +err');
+    res.redirect('/reviews');
+  }
 });
 
-
-router.post('/edit/:id', ensureAuth, verify.isAdmin, (req, res) => {
-  let searchQuery = { _id: req.params.id };
-
-  Review.updateOne(searchQuery, {
-    $set: {
+router.post('/edit/:id', upload.single("image"), ensureAuth, verify.isAdmin, async (req, res) => {
+  try {
+    const review = await Review.findById(req.params.id)
+    // Delete image from cloudinary
+    await cloudinary.uploader.destroy(review.imgUrl);
+    // Upload image to cloudinary
+    const result = await cloudinary.uploader.upload(req.file.path);
+    let data = {
       name: req.body.name,
       work: req.body.work,
       story: req.body.story,
-      imgUrl: req.body.imgUrl
-    }
-  })
-    .then(review => {
-      req.flash('success_msg', 'Testimonial updated successfully');
-      res.redirect('/reviews');
+      imgUrl: result.secure_url
+
+    };
+    await Review.findByIdAndUpdate({ _id: req.params.id }, data, {
+      new: true,
+      // runValidators: true,
     })
-    .catch(err => {
-      req.flash('error_msg', 'ERROR: +err');
-      res.redirect('/reviews');
-      console.error(err)
-    });
+    req.flash('success_msg', 'Testimonial updated successfully');
+    res.redirect('/reviews');
+  } catch (err) {
+    req.flash('error_msg', 'ERROR: +err');
+    res.redirect('/reviews');
+    console.error(err)
+  }
 });
 
 //delete request starts here
-router.post('/delete/:id', ensureAuth, verify.isAdmin, (req, res) => {
-  let searchQuery = { _id: req.params.id };
-
-  Review.remove(searchQuery)
-    .then(review => {
-      req.flash('success_msg', 'Testimonial post deleted successfully');
-      res.redirect('/reviews');
-    })
-    .catch(err => {
-      req.flash('error_msg', 'ERROR: +err');
-      res.redirect('/reviews');
-    });
+router.post("/delete/:id", ensureAuth, verify.isAdmin, async (req, res) => {
+  try {
+    // Find review by id
+    let review = await Review.findById(req.params.id);
+    // Delete image from cloudinary
+    await cloudinary.uploader.destroy(review.imgUrl);
+    // Delete review from db
+    await review.remove();
+    req.flash('success_msg', 'Testimonial post deleted successfully');
+    res.redirect('/reviews');
+  } catch (err) {
+    req.flash('error_msg', 'ERROR: +err');
+    res.redirect('/reviews');
+  }
 });
+
 module.exports = router;
