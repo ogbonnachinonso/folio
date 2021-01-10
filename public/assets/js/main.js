@@ -148,4 +148,18 @@
     });
   });
 
+  
+  $(function () {
+    $(".box-hidden").slice(0, 6).show();
+    $("#LoadMore").on('click',function (e) {
+      e.preventDefault();
+      $(".box-hidden:hidden").slice(0, 3).slideDown();
+      if($(".box-hidden:hidden").length == 0) {
+        $("#Load").fadeOut('slow');
+      }
+    });
+    
+  });
+
+
 })(jQuery);

@@ -76,8 +76,7 @@ router.post('/send', (req, res) => {
     res.redirect('/contact')
    
   });
-  // req.flash('success_msg', 'Your Email Has Been Sent Successfully');
-  // res.redirect('/contact')
+  
 });
 
 module.exports = router;

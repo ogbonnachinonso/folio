@@ -12,6 +12,7 @@ const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
 
 const Auth = require('./routes/auth');
+const reviewRoute = require('./routes/testimonial');
 const Route = require('./routes/folioRoute');
 const Router = require('./routes/index');
 
@@ -73,7 +74,7 @@ app.use((req, res, next) => {
 app.use(Router);
 app.use(Auth);
 app.use(Route);
-
+app.use(reviewRoute);
 
 
 

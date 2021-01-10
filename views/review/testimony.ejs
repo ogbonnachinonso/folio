@@ -1,0 +1,36 @@
+<%- include('../partials/header') -%>
+
+<section id="testimonials" class="testimonials section-bg">
+  <div class="container" data-aos="fade-up">
+    <div class="mt-5 float-right">
+      <a href="/create" class="btn btn-danger">Write a Review</a>
+    </div>
+    <div class="section-title pt-5">
+      <h2 class="pt-2 pb-2">Testimonials</h2>
+      <p class="mb-4">So far this is what people are saying about us and we are looking forward to seeing your review on our page to help us keep up the good work, make corrections and also improve where necessary.</p>
+    </div>
+
+    <div class="row">
+      <% reviews.forEach((review)=>{%>
+      <div class="col-md-4">
+        <div class="testimonial-item mt-3 box-hidden">
+          <p>
+            <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+            <%= review.story %>
+            <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+          </p>
+          <img src="<%= review.imgUrl %>" class="testimonial-img" alt="">
+          <h3><%= review.name %></h3>
+          <h4><%= review.work %></h4>
+        </div>
+      </div>
+      <%})%>
+    </div>
+
+    <div class="more mt-4">
+      <a href="#" id="LoadMore" class="btn btn-load">Read More</a>
+    </div>
+  </div>
+</section>
+
+<%- include('../partials/footer') -%>

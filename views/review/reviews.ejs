@@ -1,0 +1,61 @@
+
+<%- include('../partials/dash')-%>
+
+<section id="dashboard">
+<h1 class="text-center">Testimonial Dashboard</h1>
+
+
+<!--Card-->
+<div class="card card-cascade narrower">
+
+  
+  <div class="card-body">
+
+    <div class="table-responsive">
+
+      <table class="table text-nowrap ">
+        <thead class="infoo">
+          <tr>
+            <th>Name</th>
+            <th>Work</th>
+            <th>CreatedAt</th>
+            <th><button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2"><a href="/create"
+                  class="fas fa-pencil-alt mt-0"></a>
+                <i></i> </button></th>
+          </tr>
+        </thead>
+        <tbody class="full">
+          <% reviews.forEach((review)=>{%>
+          <tr>
+            <td><%= review.name %></td>
+            <td><%= review.work %></td>
+          
+            <td><%= review.createdAt.toLocaleDateString() %></td>
+            <td>
+              <a href="/edit/<%= review.id %>" class="btn btn-outline-white  btn-float mt-2"><i class="fa fa-edit "></i></a>
+
+              <form action="/delete/<%= review.id %>" method="POST" id="delete-form">
+
+                <button type="submit" class="btn red "><i class="fa fa-trash"></i></button>
+              </form>
+            </td>
+          </tr>
+
+          <%})%>
+        </tbody>
+      </table>
+
+    </div>
+    <hr class="my-0">
+
+  </div>
+  <!--/.Card content-->
+
+</div>
+<!--/.Card-->
+</section>
+
+
+
+
+<%- include('../partials/footer')-%>
